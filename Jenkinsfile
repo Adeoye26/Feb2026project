@@ -1,36 +1,30 @@
-pipeline{
-    tools{
+pipeline {
+    agent any
+
+    tools {
         jdk 'myjava'
         maven 'mymaven'
     }
-	agent any
-      stages{
-           stage('Checkout'){
-              steps{
-		 echo 'cloning..'
-                 git 'https://github.com/Adeoye26/Feb2026project.git'
-              }
-          }
-          stage('Compile1'){
-              steps{
-                  echo 'compiling..'
-                  sh 'mvn compile'
-	      }
-          }
-          stage('CodeReview1'){
-              steps{
-		    
-		  echo 'codeReview'
-                  sh 'mvn pmd:pmd'
-              }
-          }
-          
-          stage('Package'){
-              steps{
-                  sh 'mvn package'
-              }
-          }
-      }
-}
 
+    stages {
+
+        stage('Compile') {
+            steps {
+                sh 'mvn compile'
+            }
+        }
+
+        stage('Code Review') {
+            steps {
+                sh 'mvn pmd:pmd'
+            }
+        }
+
+        stage('Package') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+    }
+}
 
