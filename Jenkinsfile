@@ -1,30 +1,35 @@
-pipeline {
-    agent any
-
-    tools {
+pipeline{A
+    tools{
         jdk 'myjava'
         maven 'mymaven'
     }
-
-    stages {
-
-        stage('Compile') {
-            steps {
-                sh 'mvn compile'
-            }
-        }
-
-        stage('Code Review') {
-            steps {
-                sh 'mvn pmd:pmd'
-            }
-        }
-
-        stage('Package') {
-            steps {
-                sh 'mvn package'
-            }
-        }
-    }
+	agent any
+      stages{
+           stage('Checkout'){
+              steps{
+		 echo 'cloning..'
+                 git 'https://github.com/RayItern/JUNECLASSPRO1.git'
+              }
+          }
+          stage('Compile'){
+              steps{
+                  echo 'compiling..'
+                  sh 'mvn compile'
+	      }
+          }
+          stage('CodeReview'){
+              steps{
+		    
+		  echo 'codeReview'
+                  sh 'mvn pmd:pmd'
+              }
+          }
+          
+          stage('Package'){
+              steps{
+                  sh 'mvn package'
+              }
+          }
+      }
 }
 
