@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 pipeline{A
+=======
+pipeline{
+>>>>>>> 944c2dd (orobo)
     tools{
         jdk 'myjava'
         maven 'mymaven'
@@ -8,7 +12,11 @@ pipeline{A
            stage('Checkout'){
               steps{
 		 echo 'cloning..'
+<<<<<<< HEAD
                  git 'https://github.com/RayItern/JUNECLASSPRO1.git'
+=======
+                 git 'https://github.com/Adeoye26/Feb2026project.git'
+>>>>>>> 944c2dd (orobo)
               }
           }
           stage('Compile'){
