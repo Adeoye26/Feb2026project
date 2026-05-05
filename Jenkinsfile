@@ -13,7 +13,7 @@ pipeline{
                     }
                 }
                 stage('Compile with agent1'){
-                    agent {label 'agent11'}
+                    agent {label 'agent1'}
                     steps{
                         echo 'compiling...'
                         sh 'mvn compile'
