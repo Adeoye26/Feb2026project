@@ -1,30 +1,51 @@
-pipeline {
-    agent any
-
-    tools {
-        jdk 'myjava'
-        maven 'mymaven'
-    }
-
-    stages {
-        stage('Checkout') {
-            steps {
-                echo 'cloning..'
-                git 'https://github.com/Adeoye26/Feb2026project.git'
+pipeline{
+            tools{
+                jdk 'myjava'
+                maven 'mymaven'
             }
-        }
-
-        stage('Compile') {
-            steps {
-                echo 'compiling..'
-                sh 'mvn compile'
+            agent any
+            stages{
+                stage('Checkout on Master'){
+                    agent any
+                    steps{
+                echo 'cloning...'
+                        git 'https://github.com/Adeoye26/Feb2026project.git'
+                    }
+                }
+                stage('Compile with agent1'){
+                    agent {label 'agent11'}
+                    steps{
+                        echo 'compiling...'
+                        sh 'mvn compile'
+                }
+                }
+                stage('CodeReview with agent1'){
+                    agent {label 'agent1'}
+                    steps{
+                    
+                echo 'codeReview...'
+                        sh 'mvn pmd:pmd'
+                    }
+                }
+                stage('UnitTest with agent2'){
+                    agent {label 'agent2'}
+                    steps{
+                    echo 'Testing'
+                        sh 'mvn test'
+                    }
+                    post {
+                    success {
+                        junit 'target/surefire-reports/*.xml'
+                    }
+                }	
+                }
+                stage('Package on master') {
+            agent {
+                label 'master'
             }
-        }
-
-        stage('CodeReview') {
             steps {
-                echo 'codeReview'
-                sh 'mvn pmd:pmd'
+                echo 'Packaging...'
+                sh 'mvn package'
             }
         }
     }
