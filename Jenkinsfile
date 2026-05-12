@@ -23,9 +23,9 @@ pipeline {
             }
         }
 
-        stage('Compile with agent1') {
+        stage('Compile with agent2') {
 
-            agent { label 'agent1' }
+            agent { label 'agent2' }
 
             steps {
 
@@ -37,9 +37,9 @@ pipeline {
             }
         }
 
-        stage('CodeReview with agent1') {
+        stage('CodeReview with agent2') {
 
-            agent { label 'agent1' }
+            agent { label 'agent2' }
 
             steps {
 
@@ -51,9 +51,9 @@ pipeline {
             }
         }
 
-        stage('UnitTest with agent2') {
+        stage('UnitTest with agent1') {
 
-            agent { label 'agent2' }
+            agent { label 'agent1' }
 
             steps {
 
