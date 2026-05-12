@@ -20,8 +20,8 @@ pipeline {
             }
         }
 
-        stage('Compile with agent1') {
-            agent { label 'agent1' }
+        stage('Compile with agent2') {
+            agent { label 'agent2' }
 
             steps {
                 unstash 'source-code'
@@ -31,8 +31,8 @@ pipeline {
             }
         }
 
-        stage('CodeReview with agent1') {
-            agent { label 'agent1' }
+        stage('CodeReview with agent2') {
+            agent { label 'agent2' }
 
             steps {
                 unstash 'source-code'
@@ -42,8 +42,8 @@ pipeline {
             }
         }
 
-        stage('UnitTest with agent2') {
-            agent { label 'agent2' }
+        stage('UnitTest with agent1') {
+            agent { label 'agent1' }
 
             steps {
                 unstash 'source-code'
