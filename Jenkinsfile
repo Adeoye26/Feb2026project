@@ -1,3 +1,4 @@
+```groovy id="c6k1xz"
 pipeline {
 
     tools {
@@ -14,7 +15,9 @@ pipeline {
             agent any
 
             steps {
+
                 echo 'cloning...'
+
                 git 'https://github.com/Adeoye26/Feb2026project.git'
             }
         }
@@ -24,7 +27,11 @@ pipeline {
             agent { label 'agent1' }
 
             steps {
+
+                git 'https://github.com/Adeoye26/Feb2026project.git'
+
                 echo 'compiling...'
+
                 sh 'mvn compile'
             }
         }
@@ -34,7 +41,11 @@ pipeline {
             agent { label 'agent1' }
 
             steps {
+
+                git 'https://github.com/Adeoye26/Feb2026project.git'
+
                 echo 'codeReview...'
+
                 sh 'mvn pmd:pmd'
             }
         }
@@ -44,12 +55,18 @@ pipeline {
             agent { label 'agent2' }
 
             steps {
+
+                git 'https://github.com/Adeoye26/Feb2026project.git'
+
                 echo 'Testing'
+
                 sh 'mvn test'
             }
 
             post {
+
                 always {
+
                     junit allowEmptyResults: true,
                            testResults: 'server/target/surefire-reports/*.xml'
                 }
@@ -64,6 +81,8 @@ pipeline {
 
             steps {
 
+                git 'https://github.com/Adeoye26/Feb2026project.git'
+
                 echo 'Packaging...'
 
                 sh 'mvn package'
@@ -74,3 +93,4 @@ pipeline {
         }
     }
 }
+```
