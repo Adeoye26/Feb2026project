@@ -34,10 +34,11 @@ pipeline{
                         sh 'mvn test'
                     }
                     post {
-                    success {
-                        junit 'target/surefire-reports/*.xml'
-                    }
-                }	
+    always {
+        junit allowEmptyResults: true,
+               testResults: 'target/surefire-reports/*.xml'
+    }
+}
                 }
                 stage('Package on master') {
             agent {
