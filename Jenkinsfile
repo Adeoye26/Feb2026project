@@ -91,7 +91,7 @@ pipeline {
 
                 success {
 
-                    archiveArtifacts artifacts: 'target/*.jar, target/*.war',
+                    archiveArtifacts artifacts: 'server/target/*.jar, server/target/*.war',
                                      fingerprint: true
 
                     echo 'Artifacts archived successfully.'
