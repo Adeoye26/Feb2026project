@@ -1,96 +1,83 @@
-```groovy id="c6k1xz"
 pipeline {
+
+    agent none
 
     tools {
         jdk 'myjava'
         maven 'mymaven'
     }
 
-    agent any
-
     stages {
 
         stage('Checkout on Master') {
-
-            agent any
+            agent { label 'master' }
 
             steps {
-
                 echo 'cloning...'
+                git 'https://github.com/RayItern/Backup-DevOpscodeDemode-repo.git'
 
-                git 'https://github.com/Adeoye26/Feb2026project.git'
+                stash name: 'source-code', includes: '**/*'
             }
         }
 
         stage('Compile with agent1') {
-
             agent { label 'agent1' }
 
             steps {
-
-                git 'https://github.com/Adeoye26/Feb2026project.git'
+                unstash 'source-code'
 
                 echo 'compiling...'
-
-                sh 'mvn compile'
+                sh 'mvn clean compile'
             }
         }
 
         stage('CodeReview with agent1') {
-
             agent { label 'agent1' }
 
             steps {
-
-                git 'https://github.com/Adeoye26/Feb2026project.git'
+                unstash 'source-code'
 
                 echo 'codeReview...'
-
                 sh 'mvn pmd:pmd'
             }
         }
 
         stage('UnitTest with agent2') {
-
             agent { label 'agent2' }
 
             steps {
+                unstash 'source-code'
 
-                git 'https://github.com/Adeoye26/Feb2026project.git'
-
-                echo 'Testing'
-
+                echo 'Testing...'
                 sh 'mvn test'
             }
 
             post {
-
-                always {
-
-                    junit allowEmptyResults: true,
-                           testResults: 'server/target/surefire-reports/*.xml'
+                success {
+                    junit 'target/surefire-reports/*.xml'
                 }
             }
         }
 
         stage('Package on master') {
-
-            agent {
-                label 'master'
-            }
+            agent { label 'master' }
 
             steps {
-
-                git 'https://github.com/Adeoye26/Feb2026project.git'
+                unstash 'source-code'
 
                 echo 'Packaging...'
-
                 sh 'mvn package'
+            }
 
-                archiveArtifacts artifacts: 'server/target/*.jar',
-                                 fingerprint: true
+            post {
+                success {
+
+                    archiveArtifacts artifacts: 'target/*.jar, target/*.war',
+                    fingerprint: true
+
+                    echo 'Artifacts archived successfully'
+                }
             }
         }
     }
 }
-```
