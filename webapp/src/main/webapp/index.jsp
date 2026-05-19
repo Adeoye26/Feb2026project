@@ -44,7 +44,7 @@
 
 <div class="devops-box">
     <div class="devops-title">🚀 Hello DevOps Guys!</div>
-    <div class="devops-sub">Welcome to the CI/CD Deployment Demo ⚙️</div>
+    <div class="devops-sub">Welcome to the CI/CD Deployment by theitern ⚙️</div>
     <p class="emoji">🐳 Docker | ☁️ Cloud | 🔧 Terraform | 🔁 CI/CD</p>
 </div>
 
