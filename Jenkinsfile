@@ -1,6 +1,6 @@
 pipeline {
 
-    agent none
+    agent any
 
     tools {
         jdk 'myjava'
@@ -9,88 +9,49 @@ pipeline {
 
     stages {
 
-        stage('Checkout on Master') {
-
-            agent { label 'master' }
-
+        stage('Checkout') {
             steps {
-
                 echo 'Cloning repository...'
-
                 git 'https://github.com/Adeoye26/Feb2026project.git'
-
-                stash name: 'source-code', includes: '**/*'
             }
         }
 
-        stage('Compile with agent2') {
-
-            agent { label 'agent2' }
-
+        stage('Compile') {
             steps {
-
-                unstash 'source-code'
-
                 echo 'Compiling application...'
-
                 sh 'mvn clean compile'
             }
         }
 
-        stage('CodeReview with agent2') {
-
-            agent { label 'agent2' }
-
+        stage('Code Review') {
             steps {
-
-                unstash 'source-code'
-
                 echo 'Running code review...'
-
                 sh 'mvn pmd:pmd'
             }
         }
 
-        stage('UnitTest with agent1') {
-
-            agent { label 'agent1' }
-
+        stage('Unit Test') {
             steps {
-
-                unstash 'source-code'
-
                 echo 'Running unit tests...'
-
                 sh 'mvn test'
             }
 
             post {
-
                 success {
-
                     junit allowEmptyResults: true,
                            testResults: 'server/target/surefire-reports/*.xml'
                 }
             }
         }
 
-        stage('Package on master') {
-
-            agent { label 'master' }
-
+        stage('Package') {
             steps {
-
-                unstash 'source-code'
-
                 echo 'Packaging application...'
-
                 sh 'mvn package'
             }
 
             post {
-
                 success {
-
                     archiveArtifacts artifacts: 'server/target/*.jar, server/target/*.war',
                                      fingerprint: true
 
