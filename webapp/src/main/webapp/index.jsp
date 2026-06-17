@@ -44,7 +44,7 @@
 
 <div class="devops-box">
     <div class="devops-title">🚀 Hello DevOps Guys!</div>
-    <div class="devops-sub">Welcome to the CI/CD Deployment with The Itern ⚙️</div>
+    <div class="devops-sub">Welcome to the CI/CD Deployment with The Itern with hands-on Labs ⚙️</div>
     <p class="emoji">🐳 Docker | ☁️ Cloud | 🔧 Terraform | 🔁 CI/CD</p>
 </div>
 
