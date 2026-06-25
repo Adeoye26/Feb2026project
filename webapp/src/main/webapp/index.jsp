@@ -43,14 +43,9 @@
 <body>
 
 <div class="devops-box">
-    <div class="devops-title">🚀 Hello DevOps Guys!</div>
+    
+    ANSIBLE DELPOYED SUCCESFULLY VIA AUTOMATION ⚙️
 
-    <div class="devops-sub">
-        Ansible Deployment Successfully Completed Across 2 Nodes ⚙
-    </div>
-
-    <p class="emoji">🐳 Docker | ☁ Cloud | 🔧 Terraform | 💻 CI/CD</p>
-	
 </div>
 
 </body>
