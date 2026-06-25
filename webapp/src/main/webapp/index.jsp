@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html>
+
 <head>
     <title>DevOps Welcome</title>
 
@@ -38,13 +38,13 @@
             font-size: 30px;
         }
     </style>
-</head>
+</head:>
 
 <body>
 
 <div class="devops-box">
     <div class="devops-title">🚀 Hello DevOps Guys!</div>
-    <div class="devops-sub">Welcome to the CI/CD Deployment with The Itern with hands-on Labs ⚙️</div>
+    <div class="devops-sub">Welcome to the CI Anisilbe Deployment ⚙️</div>
     <p class="emoji">🐳 Docker | ☁️ Cloud | 🔧 Terraform | 🔁 CI/CD</p>
 </div>
 
