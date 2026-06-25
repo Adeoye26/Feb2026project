@@ -44,10 +44,14 @@
 
 <div class="devops-box">
     <div class="devops-title">🚀 Hello DevOps Guys!</div>
-    <div class="devops-sub">Welcome to the CI Anisilbe Deployment on 2 Nodes ⚙️</div>
-    <p class="emoji">🐳 Docker | ☁️ Cloud | 🔧 Terraform | 🔁 CI/CD</p>
+
+    <div class="devops-sub">
+        Ansible Deployment Successfully Completed Across 2 Nodes ⚙
+    </div>
+
+    <p class="emoji">🐳 Docker | ☁ Cloud | 🔧 Terraform | 💻 CI/CD</p>
+	
 </div>
 
 </body>
 </html>
-< going home soon>>
